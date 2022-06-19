@@ -30,8 +30,10 @@ class ArticleController  extends Controller
         /** get all user subscribe to this web site */
         $subscriberList = Subscriber::where('website_id', $allInputs['website_id'])->get();
         /** queue the message sending to all webste subcribers
+         * @note `allInputs` is equivalent to the value of value of @var $article
+         * in `\App\Jobs\SendEmailJob::dispatch` class constructor
          * */
-        \App\Jobs\SendEmailJob::dispatch($subscriberList);
+        \App\Jobs\SendEmailJob::dispatch($subscriberList, $allInputs);
 
         return Response($this->processResponse(false, "Article added"), 200);
     }

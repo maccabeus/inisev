@@ -15,13 +15,15 @@ class SendEmailJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private  $subscriberList;
+    private  $article;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($subscriberList){
+    public function __construct($subscriberList, $article){
         $this->subscriberList= $subscriberList;
+        $this->$article= $$article;
     }
 
     /**
@@ -33,6 +35,6 @@ class SendEmailJob implements ShouldQueue
     {
         $mailCommand= new CommandsSendEmail();
         // send mail using the send email command
-        $mailCommand->handle($this->subscriberList);
+        $mailCommand->handle($this->subscriberList, $this->article);
     }
 }

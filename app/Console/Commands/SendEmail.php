@@ -17,16 +17,16 @@ class SendEmail extends Command {
         parent::__construct();
     }
 
-    public function handle($subscriptionList=null) {
+    public function handle($subscriptionList, $article) {
 
-        Mail::send('email', $subscriptionList, function ($message) {
-
-            $message->from('articles@site.com');
-
-            $message->to('xxx@gmail.com')->subject('New Article Posted');
-
-        });
-
+        foreach ($subscriptionList as $subscriber){
+            $subscriberEmail= $subscriber["subscriber_email"];
+            $title= $article["title"];
+            Mail::send('email', $article, function ($message) use ($subscriberEmail, $title) {
+                $message->from('articles@site.com');
+                $message->to($subscriberEmail)->subject($title);
+            });
+        }
         $this->info('Emails sent to subscribers');
     }
 }
