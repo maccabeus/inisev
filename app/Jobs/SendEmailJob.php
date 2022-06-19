@@ -15,15 +15,16 @@ class SendEmailJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private  $subscriberList;
-    private  $article;
+    private  array $article=[];
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
     public function __construct($subscriberList, $article){
-        $this->subscriberList= $subscriberList;
-        $this->$article= $$article;
+        $this->subscriberList = $subscriberList;
+        $this->article = $article;
     }
 
     /**

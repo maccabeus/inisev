@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Subscriber;
+use Exception;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
 use Nette\Utils\Json;
@@ -33,9 +34,12 @@ class ArticleController  extends Controller
          * @note `allInputs` is equivalent to the value of value of @var $article
          * in `\App\Jobs\SendEmailJob::dispatch` class constructor
          * */
-        \App\Jobs\SendEmailJob::dispatch($subscriberList, $allInputs);
-
-        return Response($this->processResponse(false, "Article added"), 200);
+        try{
+            \App\Jobs\SendEmailJob::dispatch($subscriberList, $allInputs);
+        } catch (Exception $e) {
+            return Response($this->processResponse(false, $e), 400);
+        }
+        return Response($this->processResponse(true, "Article added"), 200);
     }
 
     private  function processResponse(bool $error, string $message=null): array{
