@@ -14,8 +14,9 @@ class Subscriber extends Model
      *
      * @var array
      */
-    protected  array $fillable=[
+    protected  $fillable=[
         'subscriber_email',
-        'website_id'
+        'website_id',
+        'subscriber_id'
     ];
 }

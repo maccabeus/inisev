@@ -9,25 +9,27 @@ use Illuminate\Support\Facades\Response;
 
 class SubscriberController extends Controller
 {
-    public  function index( ) {
-        return "done";
-    }
     public  function subscribe(Request $request ) {
+
         $allInputs= $request->all();
 
         $validator = Validator($allInputs, [
-            'websiteId' => ['required', 'int'],
-            'subscriberEmail' => ['required', 'email']
+            'website_id' => ['required', 'int'],
+            'subscriber_id' => ['required', 'int'],
+            'subscriber_email' => ['required', 'email']
         ]);
-
         if ($validator->fails()) {
             return Response("error", 400);
         }
-        $sub= Subscriber::where("subscriber_email", $allInputs['subscriberEmail'])->max(1);
-        if($sub) {
-            return Response("Already subscribed", 200);
+        $sub= Subscriber::where("subscriber_email", $allInputs['subscriber_email'])->count();
+        if($sub > 0) {
+            return Response($this->processResponse(true, "Already subscribed"), 200);
         }
         Subscriber::create($allInputs);
-        return Response("Subscribtion successful", 200);
+        return Response($this->processResponse(false, "Subscribtion successful"), 200);
+    }
+
+    private  function processResponse(bool $error, string $message=null): array{
+        return  ["error"=>$error, "message"=>$message];
     }
 }

@@ -3,6 +3,7 @@ POST http://127.0.0.1:8001/api/post/subscribe HTTP/1.1
 content-type: application/json
 
 {
-  "websiteId": "1",
-  "subscriberEmail": "macetlennoxyahoo.com"
+  "website_id": 1,
+  "subscriber_id": 2,
+  "subscriber_email": "macetlennoxy@yahoo.com"
 }

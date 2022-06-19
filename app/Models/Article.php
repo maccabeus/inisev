@@ -14,12 +14,13 @@ class Article extends Model
      *
      * @var array<int, string>
      */
-    protected  array $fillable=[
+    protected  $fillable=[
         'website_id',
         'author_id',
         'author_email',
+        'title',
         'description',
         'post_slug',
-        'post_content',
+        'post_content'
     ];
 }
