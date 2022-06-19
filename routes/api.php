@@ -3,8 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubscriberController;
-use App\Http\Controllers\ArtcleController;
-
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  */
 Route::namespace("post")->group(function() {
 
-    Route::post("post/create", [ ArtcleController::class, "create"])->name("post.create");
+    Route::post("post/create", [ ArticleController::class, "create"])->name("post.create");
 
     Route::post("post/subscribe", [SubscriberController::class, "subscribe"])->name("post.subscribe");
 });
