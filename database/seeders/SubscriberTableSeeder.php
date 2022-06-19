@@ -17,16 +17,19 @@ class SubscriberTableSeeder extends Seeder
     {
         DB::table('subscribers')->insert(
             [
+                'subscriber_id' => '1',
                 'subscriber_email' => 'johnsmith@gmail.com',
-                'website_id' => 'https://subone.com'
+                'website_id' => 1
             ],
             [
+                'subscriber_id' => '2',
                 'subscriber_email' => 'janesmith@gmail.com',
-                'website_id' => 'https://subone.com'
+                'website_id' => 2
             ],
             [
+                'subscriber_id' => '3',
                 'subscriber_email' => 'samdoe@gmail.com',
-                'website_id' => 'https://subthree.com'
+                'website_id' => 3
             ]
         );
     }

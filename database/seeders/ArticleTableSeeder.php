@@ -17,13 +17,14 @@ class ArticleTableSeeder extends Seeder
     {
         DB::table('articles')->insert(
             [
-                'subscriber_email' => 'John  Smith',
-                'website_id' => 'johnsmith@gmail.com'
+                'website_id' => 1,
+                'author_id' => 2,
+                'author_email' => 'johndoes@gmail.com',
+                'title' => 'The essense of science',
+                'description' => 'The essense of science',
+                'post_slug' => 'essende_of_science',
+                'post_content' => 'Science is the source of allt things',
             ],
-            [
-                'subscriber_email' => 'Jane  Smith',
-                'website_id' => 'janesmith@gmail.com'
-            ]
         );
     }
 }

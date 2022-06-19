@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\ArtcleController;
 
 
 /*
@@ -21,10 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 /**
  * Article API endpoint
  */
-Route::prefix("article", function() {
+Route::namespace("post")->group(function() {
 
-    Route::post("/", [])->name("post");
+    Route::post("post/create", [ ArtcleController::class, "create"])->name("post.create");
 
-    Route::get("/subscribe", [])->name("subscribe");
-
-})->name("article");
+    Route::post("post/subscribe", [SubscriberController::class, "subscribe"])->name("post.subscribe");
+});

@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('subscribers', function (Blueprint $table) {
             $table->id();
             $table->integer('subscriber_id')->index();
-            $table->integer('subscriber_email')->index();
             $table->integer('website_id')->index();
+            $table->string('subscriber_email')->index();
             $table->timestamps();
         });
     }

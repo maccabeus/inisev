@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('article', function (Blueprint $table) {
+        Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->integer('website_id')->index();
             $table->integer('author_id')->index();
-            $table->integer('author_email')->index();
+            $table->string('author_email')->index();
             $table->string('title');
             $table->string('description');
             $table->string('post_slug');
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('article');
+        Schema::dropIfExists('articles');
     }
 };
